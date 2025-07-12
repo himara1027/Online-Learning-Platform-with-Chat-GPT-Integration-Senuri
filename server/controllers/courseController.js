@@ -76,3 +76,15 @@ exports.deleteCourse = async (req, res) => {
     res.status(500).json({ message: 'Failed to delete course' });
   }
 };
+
+// Get courses created by the logged-in instructor
+exports.getInstructorCourses = async (req, res) => {
+  try {
+    const instructorId = req.user._id;
+    const courses = await Course.find({ instructor: instructorId });
+    res.json(courses);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch instructor courses' });
+  }
+};
+

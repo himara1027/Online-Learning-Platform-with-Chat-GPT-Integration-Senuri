@@ -4,7 +4,8 @@ const {
   getAllCourses,
   getCourseById,
   updateCourse,
-  deleteCourse
+  deleteCourse,
+  getInstructorCourses
 } = require('../controllers/courseController');
 
 const { authenticateToken, authorizeRoles } = require('../middleware/authMiddleware');
@@ -17,6 +18,7 @@ router.get('/:id', getCourseById);
 
 // Protected (Instructor Only)
 router.post('/', authenticateToken, authorizeRoles('instructor'), createCourse);
+router.get('/instructor/courses', authenticateToken, authorizeRoles('instructor'), getInstructorCourses);
 router.put('/:id', authenticateToken, authorizeRoles('instructor'), updateCourse);
 router.delete('/:id', authenticateToken, authorizeRoles('instructor'), deleteCourse);
 

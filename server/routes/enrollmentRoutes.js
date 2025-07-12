@@ -5,7 +5,7 @@ const {
   getCourseEnrollments
 } = require('../controllers/enrollmentController');
 
-const { authenticateToken, authorizeRoles } = require('../middlewares/authMiddleware');
+const { authenticateToken, authorizeRoles } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
