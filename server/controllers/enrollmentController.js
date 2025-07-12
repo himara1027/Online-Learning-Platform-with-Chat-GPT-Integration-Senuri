@@ -43,3 +43,12 @@ exports.getCourseEnrollments = async (req, res) => {
     res.status(500).json({ message: 'Failed to load enrolled students' });
   }
 };
+exports.getAllCourses = async (req, res) => {
+  try {
+    const courses = await Course.find().populate('instructor', 'username');
+    res.json(courses);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get courses' });
+  }
+};
+

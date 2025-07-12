@@ -70,12 +70,14 @@ exports.deleteCourse = async (req, res) => {
       return res.status(403).json({ message: 'Unauthorized to delete this course' });
     }
 
-    await course.remove();
+    await course.deleteOne(); 
     res.json({ message: 'Course deleted' });
   } catch (err) {
-    res.status(500).json({ message: 'Failed to delete course' });
+    console.error('Delete Course Error:', err); 
+    res.status(500).json({ message: 'Failed to delete course', error: err.message });
   }
 };
+
 
 // Get courses created by the logged-in instructor
 exports.getInstructorCourses = async (req, res) => {
