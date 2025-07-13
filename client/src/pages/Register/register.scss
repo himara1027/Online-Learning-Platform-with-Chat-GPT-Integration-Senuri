@@ -1,0 +1,134 @@
+// Import base professional styles
+@import '../Login/login.scss';
+
+// Register-specific professional enhancements
+.register-card {
+  max-width: 650px;
+  width: 800px;
+
+
+  // All form grids in register now use grid-2
+  .form-grid.grid-2 {
+    margin-bottom: var(--space-2xl);
+
+    .form-field {
+      margin-bottom: 0;
+    }
+
+    // First row - Names
+    &:nth-of-type(1) {
+      .form-field {
+        animation-delay: 0.1s;
+        
+        &:nth-child(2) {
+          animation-delay: 0.2s;
+        }
+      }
+    }
+
+    // Second row - Age and Email  
+    &:nth-of-type(2) {
+      .form-field {
+        &:nth-child(1) {
+          animation-delay: 0.3s;
+        }
+        &:nth-child(2) {
+          animation-delay: 0.4s;
+        }
+      }
+    }
+
+    // Third row - Username and Password
+    &:nth-of-type(3) {
+      .form-field {
+        &:nth-child(1) {
+          animation-delay: 0.5s;
+        }
+        &:nth-child(2) {
+          animation-delay: 0.6s;
+        }
+      }
+    }
+  }
+
+  .role-field {
+    margin-bottom: var(--space-2xl);
+    animation-delay: 0.7s;
+  }
+}
+
+// Professional staggered animations for register form
+.register-form {
+  .form-field {
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+  }
+
+  .role-card:hover .role-label .role-icon {
+    animation: professionalBounce 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+// Professional animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes professionalBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) scale(1.05);
+  }
+  40% {
+    transform: translateY(-8px) scale(1.1);
+  }
+  60% {
+    transform: translateY(-4px) scale(1.07);
+  }
+}
+
+// Enhanced responsive design for register
+@media (max-width: 1024px) {
+  .register-card {
+    max-width: 650px;
+  }
+}
+
+@media (max-width: 768px) {
+  .register-card {
+    max-width: 100%;
+  }
+
+  .form-grid.grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .form-grid.grid-4,
+  .form-grid.grid-2 {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .role-selector {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .role-card .role-label {
+    padding: var(--space-xl);
+
+    .role-icon {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}

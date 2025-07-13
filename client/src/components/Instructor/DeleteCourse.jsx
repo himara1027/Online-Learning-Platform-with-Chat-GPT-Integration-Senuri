@@ -1,41 +1,121 @@
-import React, { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+"use client"
+
+import { useEffect, useState } from "react"
+import { useParams, useNavigate } from "react-router-dom"
+import axios from "axios"
+import "./DeleteCourse.css"
 
 const DeleteCourse = ({ token }) => {
-  const { id } = useParams();
-  const navigate = useNavigate();
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const [showDialog, setShowDialog] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    const confirmAndDelete = async () => {
-      const confirmed = window.confirm('Are you sure you want to delete this course?');
+    setShowDialog(true)
+  }, [])
 
-      if (!confirmed) {
-        navigate('/instructor-dashboard');
-        return;
-      }
+  const handleCancel = () => {
+    setShowDialog(false)
+    navigate("/instructor-dashboard")
+  }
 
-      try {
-        const res = await axios.delete(`http://localhost:5000/api/courses/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+  const handleConfirmDelete = async () => {
+    try {
+      setIsDeleting(true)
+      setError(null)
 
+      await axios.delete(`http://localhost:5000/api/courses/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
 
-      } catch (err) {
-        console.error('Delete failed:', err);
+      navigate("/instructor-dashboard")
+    } catch (err) {
+      console.error("Delete failed:", err)
+      const errorMessage = err?.response?.data?.message || "Failed to delete course. Please try again."
+      setError(errorMessage)
+      setIsDeleting(false)
+    }
+  }
 
-        const msg = err?.response?.data?.message || 'Failed to delete course.';
-        alert(msg);
-        navigate('/instructor-dashboard');
-      }
-    };
+  return (
+    <div className="delete-course-container">
+      <div className="delete-course-content">
+        <div className="delete-card">
+          <div className="delete-header">
+            <div className="delete-icon">{isDeleting ? <div className="loading-spinner"></div> : <span>🗑️</span>}</div>
+            <h2 className="delete-title">{isDeleting ? "Deleting Course..." : "Delete Course"}</h2>
+            <p className="delete-description">
+              {isDeleting ? "Please wait while we delete your course." : "This action cannot be undone."}
+            </p>
+          </div>
 
-    confirmAndDelete();
-  }, [id, navigate, token]);
+          {error && (
+            <div className="error-message">
+              <div className="error-content">
+                <span className="error-icon">⚠️</span>
+                <div>
+                  <p className="error-title">Error</p>
+                  <p className="error-text">{error}</p>
+                </div>
+              </div>
+            </div>
+          )}
 
-  return <p>Deleting course...</p>;
-};
+          <div className="delete-actions">
+            <button className="btn btn-outline" onClick={handleCancel} disabled={isDeleting}>
+              ← Cancel
+            </button>
+            <button className="btn btn-danger" onClick={handleConfirmDelete} disabled={isDeleting}>
+              {isDeleting ? (
+                <>
+                  <div className="btn-spinner"></div>
+                  Deleting...
+                </>
+              ) : (
+                <>🗑️ Delete</>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
 
-export default DeleteCourse;
+      {/* Confirmation Dialog */}
+      {showDialog && !isDeleting && (
+        <div className="dialog-overlay" onClick={handleCancel}>
+          <div className="dialog-content" onClick={(e) => e.stopPropagation()}>
+            <div className="dialog-header">
+              <h3 className="dialog-title">
+                <span className="dialog-icon">⚠️</span>
+                Are you absolutely sure?
+              </h3>
+              <p className="dialog-description">
+                This action cannot be undone. This will permanently delete the course and remove all associated data
+                including student enrollments and progress.
+              </p>
+            </div>
+            <div className="dialog-actions">
+              <button className="btn btn-outline" onClick={handleCancel}>
+                Cancel
+              </button>
+              <button
+                className="btn btn-danger"
+                onClick={() => {
+                  setShowDialog(false)
+                  handleConfirmDelete()
+                }}
+              >
+                Delete Course
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default DeleteCourse

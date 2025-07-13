@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
+import Logout from './components/LogoutButton';
 import InstructorDashboard from './pages/InstructorDashboard/InstructorDashboard';
 import StudentDashboard from './pages/StudentDashboard/StudentDashboard';
 import EditCourse from './components/Instructor/EditCourse';
@@ -45,7 +46,10 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login setAuthUser={setAuthUser} />} />
+        <Route path="/" element={<Login setAuthUser={setAuthUser} />} />
+        <Route path="/logout" element={<Logout setAuthUser={setAuthUser} />} />
+
+
         <Route path="/instructor-dashboard" element={<InstructorDashboard authUser={authUser} token={token} />} />
         <Route path="/edit-course/:id" element={<EditCourse token={token} />} />
         <Route path="/delete-course/:id" element={<DeleteCourse token={token} />} />
@@ -55,7 +59,7 @@ const App = () => {
 
         <Route path="/courses/:id" element={<CourseDetail />} />
         <Route path="/courses" element={<CourseList token={token} />} />
-        <Route path="/courses/:id" element={<EnrolledDetail />} />
+        <Route path="/enroll/:id" element={<EnrolledDetail />} />
         <Route path="/my-courses" element={<EnrolledCourses token={token} />} />
 
 

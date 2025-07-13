@@ -1,16 +1,23 @@
-// src/components/LogoutButton.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const LogoutButton = () => {
+const Logout = ({ setAuthUser, setToken }) => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  useEffect(() => {
+    // Clear local storage or any persisted token
     localStorage.removeItem('token');
-    navigate('/login');
-  };
+    localStorage.removeItem('authUser');
 
-  return <button onClick={handleLogout}>Logout</button>;
+    // Clear auth state if passed from parent
+    if (setAuthUser) setAuthUser(null);
+    if (setToken) setToken(null);
+
+    // Redirect to login
+    navigate('/');
+  }, [navigate, setAuthUser, setToken]);
+
+  return <p>Logging out...</p>;
 };
 
-export default LogoutButton;
+export default Logout;
