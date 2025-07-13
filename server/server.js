@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 
 const cors = require('cors');
-const chatRoutes = require('./routes/chatRoutes');
+
 
 dotenv.config();
 
@@ -28,4 +28,3 @@ const courseRoutes = require('./routes/courseRoutes');
 app.use('/api/courses', courseRoutes);
 const enrollmentRoutes = require('./routes/enrollmentRoutes');
 app.use('/api/enrollments', enrollmentRoutes);
-// app.use('/api/chat', chatRoutes);
