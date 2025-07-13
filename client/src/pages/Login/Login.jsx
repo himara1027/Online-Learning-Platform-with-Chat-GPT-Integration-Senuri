@@ -155,4 +155,4 @@ const Login = ({ setAuthUser }) => {
   )
 }
 
-export default LogIn
+export default Login
