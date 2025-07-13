@@ -56,269 +56,271 @@ const Register = () => {
   }
 
   return (
-    <div className="auth-page">
-      <div className="auth-background">
-        <div className="floating-shapes">
-          <div className="shape shape-1"></div>
-          <div className="shape shape-2"></div>
-          <div className="shape shape-3"></div>
-          <div className="shape shape-4"></div>
-          <div className="shape shape-5"></div>
+    <div className="register-page-wrapper">
+      <div className="register-animated-background">
+        <div className="register-floating-elements">
+          <div className="register-shape register-shape-primary"></div>
+          <div className="register-shape register-shape-secondary"></div>
+          <div className="register-shape register-shape-tertiary"></div>
+          <div className="register-shape register-shape-quaternary"></div>
+          <div className="register-shape register-shape-quinary"></div>
         </div>
       </div>
 
-      <div className="auth-container">
-        <div className="auth-card register-card">
-          <div className="card-header">
-            <div className="brand-logo">
-              <div className="logo-icon">
+      <div className="register-main-container">
+        <div className="register-form-card">
+          <div className="register-card-header">
+            <div className="register-brand-section">
+              <div className="register-logo-container">
                 <Sparkles size={32} />
               </div>
-              <h1 className="brand-title">EduPro</h1>
+              <h1 className="register-brand-name">EduPro</h1>
             </div>
-            <div className="auth-header">
-              <h2 className="auth-title">Create Your Account</h2>
-              <p className="auth-subtitle">Join thousands of professionals worldwide</p>
+            <div className="register-title-section">
+              <h2 className="register-main-title">Create Your Account</h2>
+              <p className="register-subtitle-text">Join thousands of professionals worldwide</p>
             </div>
           </div>
 
-          <form className="auth-form register-form" onSubmit={handleSubmit}>
-            {/* First Row - First Name and Last Name */}
-            <div className="form-grid grid-2">
-              <div className="form-field">
-                <label htmlFor="firstName" className="field-label">
-                  <User size={16} />
-                  First Name
-                </label>
-                <div className="input-container">
-                  <div className="input-icon">
-                    <User size={18} />
+          <div className="register-form-wrapper">
+            <form className="register-form-element" onSubmit={handleSubmit}>
+              {/* First Row - First Name and Last Name */}
+              <div className="register-form-grid register-grid-dual">
+                <div className="register-input-field">
+                  <label htmlFor="firstName" className="register-field-label">
+                    <User size={16} />
+                    First Name
+                  </label>
+                  <div className="register-input-wrapper">
+                    <div className="register-input-icon">
+                      <User size={18} />
+                    </div>
+                    <input
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      className="register-text-input"
+                      placeholder="John"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      required
+                    />
+                    <div className="register-input-underline"></div>
                   </div>
-                  <input
-                    id="firstName"
-                    name="firstName"
-                    type="text"
-                    className="field-input"
-                    placeholder="John"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    required
-                  />
-                  <div className="input-border"></div>
+                </div>
+
+                <div className="register-input-field">
+                  <label htmlFor="lastName" className="register-field-label">
+                    <User size={16} />
+                    Last Name
+                  </label>
+                  <div className="register-input-wrapper">
+                    <div className="register-input-icon">
+                      <User size={18} />
+                    </div>
+                    <input
+                      id="lastName"
+                      name="lastName"
+                      type="text"
+                      className="register-text-input"
+                      placeholder="Doe"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      required
+                    />
+                    <div className="register-input-underline"></div>
+                  </div>
                 </div>
               </div>
 
-              <div className="form-field">
-                <label htmlFor="lastName" className="field-label">
-                  <User size={16} />
-                  Last Name
-                </label>
-                <div className="input-container">
-                  <div className="input-icon">
-                    <User size={18} />
+              {/* Second Row - Age and Email */}
+              <div className="register-form-grid register-grid-dual">
+                <div className="register-input-field">
+                  <label htmlFor="age" className="register-field-label">
+                    <Calendar size={16} />
+                    Age
+                  </label>
+                  <div className="register-input-wrapper">
+                    <div className="register-input-icon">
+                      <Calendar size={18} />
+                    </div>
+                    <input
+                      id="age"
+                      name="age"
+                      type="number"
+                      className="register-text-input"
+                      placeholder="25"
+                      value={formData.age}
+                      onChange={handleChange}
+                      min="13"
+                      max="120"
+                      required
+                    />
+                    <div className="register-input-underline"></div>
                   </div>
-                  <input
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    className="field-input"
-                    placeholder="Doe"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    required
-                  />
-                  <div className="input-border"></div>
+                </div>
+
+                <div className="register-input-field">
+                  <label htmlFor="email" className="register-field-label">
+                    <Mail size={16} />
+                    Email
+                  </label>
+                  <div className="register-input-wrapper">
+                    <div className="register-input-icon">
+                      <Mail size={18} />
+                    </div>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      className="register-text-input"
+                      placeholder="john@company.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                    <div className="register-input-underline"></div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Second Row - Age and Email */}
-            <div className="form-grid grid-2">
-              <div className="form-field">
-                <label htmlFor="age" className="field-label">
-                  <Calendar size={16} />
-                  Age
-                </label>
-                <div className="input-container">
-                  <div className="input-icon">
-                    <Calendar size={18} />
+              {/* Third Row - Username and Password */}
+              <div className="register-form-grid register-grid-dual">
+                <div className="register-input-field">
+                  <label htmlFor="username" className="register-field-label">
+                    <UserCheck size={16} />
+                    Username
+                  </label>
+                  <div className="register-input-wrapper">
+                    <div className="register-input-icon">
+                      <UserCheck size={18} />
+                    </div>
+                    <input
+                      id="username"
+                      name="username"
+                      type="text"
+                      className="register-text-input"
+                      placeholder="johndoe"
+                      value={formData.username}
+                      onChange={handleChange}
+                      required
+                    />
+                    <div className="register-input-underline"></div>
                   </div>
-                  <input
-                    id="age"
-                    name="age"
-                    type="number"
-                    className="field-input"
-                    placeholder="25"
-                    value={formData.age}
-                    onChange={handleChange}
-                    min="13"
-                    max="120"
-                    required
-                  />
-                  <div className="input-border"></div>
+                </div>
+
+                <div className="register-input-field">
+                  <label htmlFor="password" className="register-field-label">
+                    <Lock size={16} />
+                    Password
+                  </label>
+                  <div className="register-input-wrapper">
+                    <div className="register-input-icon">
+                      <Lock size={18} />
+                    </div>
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      className="register-text-input"
+                      placeholder="••••••••"
+                      value={formData.password}
+                      onChange={handleChange}
+                      required
+                    />
+                    <div className="register-input-underline"></div>
+                  </div>
                 </div>
               </div>
 
-              <div className="form-field">
-                <label htmlFor="email" className="field-label">
-                  <Mail size={16} />
-                  Email
-                </label>
-                <div className="input-container">
-                  <div className="input-icon">
-                    <Mail size={18} />
-                  </div>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    className="field-input"
-                    placeholder="john@company.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                  <div className="input-border"></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Third Row - Username and Password */}
-            <div className="form-grid grid-2">
-              <div className="form-field">
-                <label htmlFor="username" className="field-label">
+              {/* Role Selection */}
+              <div className="register-input-field register-role-section">
+                <label className="register-field-label">
                   <UserCheck size={16} />
-                  Username
+                  Choose Your Role
                 </label>
-                <div className="input-container">
-                  <div className="input-icon">
-                    <UserCheck size={18} />
+                <div className="register-role-picker">
+                  <div className={`register-role-option ${formData.role === "student" ? "register-role-selected" : ""}`}>
+                    <input
+                      type="radio"
+                      name="role"
+                      value="student"
+                      checked={formData.role === "student"}
+                      onChange={handleChange}
+                      id="student-role"
+                    />
+                    <label htmlFor="student-role" className="register-role-option-label">
+                      <div className="register-role-icon-container">
+                        <GraduationCap size={32} />
+                      </div>
+                      <div className="register-role-content">
+                        <h3 className="register-role-title">Student</h3>
+                        <p className="register-role-description">Learn and grow with expert guidance</p>
+                      </div>
+                    </label>
                   </div>
-                  <input
-                    id="username"
-                    name="username"
-                    type="text"
-                    className="field-input"
-                    placeholder="johndoe"
-                    value={formData.username}
-                    onChange={handleChange}
-                    required
-                  />
-                  <div className="input-border"></div>
-                </div>
-              </div>
 
-              <div className="form-field">
-                <label htmlFor="password" className="field-label">
-                  <Lock size={16} />
-                  Password
-                </label>
-                <div className="input-container">
-                  <div className="input-icon">
-                    <Lock size={18} />
+                  <div className={`register-role-option ${formData.role === "instructor" ? "register-role-selected" : ""}`}>
+                    <input
+                      type="radio"
+                      name="role"
+                      value="instructor"
+                      checked={formData.role === "instructor"}
+                      onChange={handleChange}
+                      id="instructor-role"
+                    />
+                    <label htmlFor="instructor-role" className="register-role-option-label">
+                      <div className="register-role-icon-container">
+                        <BookOpen size={32} />
+                      </div>
+                      <div className="register-role-content">
+                        <h3 className="register-role-title">Instructor</h3>
+                        <p className="register-role-description">Share knowledge and inspire others</p>
+                      </div>
+                    </label>
                   </div>
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    className="field-input"
-                    placeholder="••••••••"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                  />
-                  <div className="input-border"></div>
                 </div>
               </div>
+
+              {/* Submit Button */}
+              <button type="submit" className="register-submit-button" disabled={isLoading}>
+                <span className="register-button-content">
+                  {isLoading ? (
+                    <>
+                      <div className="register-loading-spinner"></div>
+                      <span>Creating Account...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="register-button-icon">
+                        <ArrowRight size={20} />
+                      </span>
+                      <span>Create Account</span>
+                    </>
+                  )}
+                </span>
+                <div className="register-button-glow"></div>
+              </button>
+
+              {/* Message */}
+              {message && (
+                <div className={`register-status-message ${message.includes("successful") ? "register-status-success" : "register-status-error"}`}>
+                  <div className="register-message-icon">
+                    {message.includes("successful") ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
+                  </div>
+                  <span className="register-message-text">{message}</span>
+                </div>
+              )}
+            </form>
+
+            <div className="register-footer-section">
+              <p className="register-footer-text">
+                Already have an account?{" "}
+                <Link to="/" className="register-footer-link">
+                  Sign in here
+                </Link>
+              </p>
             </div>
-
-            {/* Role Selection */}
-            <div className="form-field role-field">
-              <label className="field-label">
-                <UserCheck size={16} />
-                Choose Your Role
-              </label>
-              <div className="role-selector">
-                <div className={`role-card ${formData.role === "student" ? "selected" : ""}`}>
-                  <input
-                    type="radio"
-                    name="role"
-                    value="student"
-                    checked={formData.role === "student"}
-                    onChange={handleChange}
-                    id="student-role"
-                  />
-                  <label htmlFor="student-role" className="role-label">
-                    <div className="role-icon">
-                      <GraduationCap size={32} />
-                    </div>
-                    <div className="role-info">
-                      <h3 className="role-title">Student</h3>
-                      <p className="role-desc">Learn and grow with expert guidance</p>
-                    </div>
-                  </label>
-                </div>
-
-                <div className={`role-card ${formData.role === "instructor" ? "selected" : ""}`}>
-                  <input
-                    type="radio"
-                    name="role"
-                    value="instructor"
-                    checked={formData.role === "instructor"}
-                    onChange={handleChange}
-                    id="instructor-role"
-                  />
-                  <label htmlFor="instructor-role" className="role-label">
-                    <div className="role-icon">
-                      <BookOpen size={32} />
-                    </div>
-                    <div className="role-info">
-                      <h3 className="role-title">Instructor</h3>
-                      <p className="role-desc">Share knowledge and inspire others</p>
-                    </div>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <button type="submit" className="submit-btn" disabled={isLoading}>
-              <span className="btn-content">
-                {isLoading ? (
-                  <>
-                    <div className="loading-spinner"></div>
-                    <span>Creating Account...</span>
-                  </>
-                ) : (
-                  <>
-                    <span className="btn-icon">
-                      <ArrowRight size={20} />
-                    </span>
-                    <span>Create Account</span>
-                  </>
-                )}
-              </span>
-              <div className="btn-glow"></div>
-            </button>
-
-            {/* Message */}
-            {message && (
-              <div className={`status-message ${message.includes("successful") ? "success" : "error"}`}>
-                <div className="message-icon">
-                  {message.includes("successful") ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
-                </div>
-                <span className="message-text">{message}</span>
-              </div>
-            )}
-          </form>
-
-          <div className="auth-footer">
-            <p className="footer-text">
-              Already have an account?{" "}
-              <Link to="/" className="footer-link">
-                Sign in here
-              </Link>
-            </p>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@
 import { useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
-import { UserCheck, Lock, ArrowRight, Sparkles, CheckCircle, AlertCircle } from "lucide-react"
+import { UserCheck, Lock, ArrowRight, Sparkles, CheckCircle, AlertCircle, LogIn } from "lucide-react"
 import "./login.scss"
 
 const Login = ({ setAuthUser }) => {
@@ -40,120 +40,119 @@ const Login = ({ setAuthUser }) => {
   }
 
   return (
-    <div className="auth-page">
-      <div className="auth-background">
-        <div className="floating-shapes">
-          <div className="shape shape-1"></div>
-          <div className="shape shape-2"></div>
-          <div className="shape shape-3"></div>
-          <div className="shape shape-4"></div>
-          <div className="shape shape-5"></div>
+    <div className="edupro-auth-page">
+      <div className="edupro-auth-background">
+        <div className="edupro-floating-shapes">
+          <div className="edupro-shape edupro-shape-1"></div>
+          <div className="edupro-shape edupro-shape-2"></div>
+          <div className="edupro-shape edupro-shape-3"></div>
+          <div className="edupro-shape edupro-shape-4"></div>
+          <div className="edupro-shape edupro-shape-5"></div>
         </div>
       </div>
 
-      <div className="auth-container">
-        <div className="auth-card login-card">
-          <div className="card-header">
-            <div className="brand-logo">
-              <div className="logo-icon">
+      <div className="edupro-auth-container">
+        <div className="edupro-auth-card edupro-login-card">
+          <div className="edupro-card-header">
+            <div className="edupro-brand-logo">
+              <div className="edupro-logo-icon">
                 <Sparkles size={32} />
               </div>
-              <h1 className="brand-title">EduPro</h1>
+              <h1 className="edupro-brand-title">EduPro</h1>
             </div>
-            <div className="auth-header">
-              <h2 className="auth-title">Welcome Back</h2>
-              <p className="auth-subtitle">Continue your professional journey</p>
+            <div className="edupro-auth-header">
+              <h2 className="edupro-auth-title">Welcome Back</h2>
+              <p className="edupro-auth-subtitle">Continue your professional journey</p>
+            </div>
+            <div className="edupro-auth-footer">
+              <p className="edupro-footer-text">
+                Don't have an account?{" "}
+                <Link to="/register" className="edupro-footer-link">
+                  Create one here
+                </Link>
+              </p>
             </div>
           </div>
 
-          <form className="auth-form login-form" onSubmit={handleSubmit}>
-            <div className="form-field">
-              <label htmlFor="username" className="field-label">
+          <form className="edupro-auth-form edupro-login-form" onSubmit={handleSubmit}>
+            <div className="edupro-form-field">
+              <label htmlFor="username" className="edupro-field-label">
                 <UserCheck size={16} />
                 Username
               </label>
-              <div className="input-container">
-                <div className="input-icon">
+              <div className="edupro-input-container">
+                <div className="edupro-input-icon">
                   <UserCheck size={18} />
                 </div>
                 <input
                   id="username"
                   name="username"
                   type="text"
-                  className="field-input"
+                  className="edupro-field-input"
                   placeholder="Enter your username"
                   value={formData.username}
                   onChange={handleChange}
                   required
                 />
-                <div className="input-border"></div>
+                <div className="edupro-input-border"></div>
               </div>
             </div>
 
-            <div className="form-field">
-              <label htmlFor="password" className="field-label">
+            <div className="edupro-form-field">
+              <label htmlFor="password" className="edupro-field-label">
                 <Lock size={16} />
                 Password
               </label>
-              <div className="input-container">
-                <div className="input-icon">
+              <div className="edupro-input-container">
+                <div className="edupro-input-icon">
                   <Lock size={18} />
                 </div>
                 <input
                   id="password"
                   name="password"
                   type="password"
-                  className="field-input"
+                  className="edupro-field-input"
                   placeholder="Enter your password"
                   value={formData.password}
                   onChange={handleChange}
                   required
                 />
-                <div className="input-border"></div>
+                <div className="edupro-input-border"></div>
               </div>
             </div>
 
-            <button type="submit" className="submit-btn" disabled={isLoading}>
-              <span className="btn-content">
+            <button type="submit" className="edupro-submit-btn" disabled={isLoading}>
+              <span className="edupro-btn-content">
                 {isLoading ? (
                   <>
-                    <div className="loading-spinner"></div>
+                    <div className="edupro-loading-spinner"></div>
                     <span>Signing In...</span>
                   </>
                 ) : (
                   <>
-                    <span className="btn-icon">
+                    <span className="edupro-btn-icon">
                       <ArrowRight size={20} />
                     </span>
                     <span>Sign In</span>
                   </>
                 )}
               </span>
-              <div className="btn-glow"></div>
+              <div className="edupro-btn-glow"></div>
             </button>
 
             {message && (
-              <div className={`status-message ${message.includes("successful") ? "success" : "error"}`}>
-                <div className="message-icon">
+              <div className={`edupro-status-message ${message.includes("successful") ? "edupro-success" : "edupro-error"}`}>
+                <div className="edupro-message-icon">
                   {message.includes("successful") ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
                 </div>
-                <span className="message-text">{message}</span>
+                <span className="edupro-message-text">{message}</span>
               </div>
             )}
           </form>
-
-          <div className="auth-footer">
-            <p className="footer-text">
-              Don't have an account?{" "}
-              <Link to="/register" className="footer-link">
-                Create one here
-              </Link>
-            </p>
-          </div>
         </div>
       </div>
     </div>
   )
 }
 
-export default Login
+export default LogIn

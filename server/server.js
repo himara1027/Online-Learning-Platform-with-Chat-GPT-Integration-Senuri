@@ -1,7 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
-
+// const gptCourseRoutes = require('./routes/gptCourseRoutes');
 const cors = require('cors');
 
 
@@ -28,3 +28,4 @@ const courseRoutes = require('./routes/courseRoutes');
 app.use('/api/courses', courseRoutes);
 const enrollmentRoutes = require('./routes/enrollmentRoutes');
 app.use('/api/enrollments', enrollmentRoutes);
+// app.use('/api/gptCourses', gptCourseRoutes);
